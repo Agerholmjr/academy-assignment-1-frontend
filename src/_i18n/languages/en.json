@@ -1,7 +1,11 @@
 {
   "landingPage": {
     "title": "Welcome to MeeWs frontend template",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "welcomeT": "Welcome to The Fitness Power",
+    "motMsg":"Bring the power, bring the YOU",
+    "welcomeMsg":"Your app for updated fitness exercises to get your dream physic!",
+    "goButton": "Let's work"
   },
   "authentication": {
     "login": "Login",

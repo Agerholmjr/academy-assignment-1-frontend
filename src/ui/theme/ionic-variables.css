@@ -5,6 +5,7 @@ http://ionicframework.com/docs/theming/ */
 :root {
   /** Overrides */
   --ion-background-color: white;
+  --ion-background-color: #a91740;  
 
   /** primary **/
   --ion-color-primary: var(--primary-color);

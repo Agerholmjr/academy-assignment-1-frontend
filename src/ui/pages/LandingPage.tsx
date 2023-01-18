@@ -1,6 +1,7 @@
 import React from 'react';
 import { IonButton, IonContent, IonImg, IonPage, useIonRouter } from '@ionic/react';
-import img from 'static/assets/img/meew-bg.jpg';
+import img from 'static/assets/img/fitness-logo-Graphics-9335486-1.jpeg';
+import { t } from 'i18next';
 
 /**
  * Notice that the img will "underlap" under the content, to keep its proportion.
@@ -11,13 +12,16 @@ const LandingPage: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <IonImg src={img} class="fixed w-full h-auto" />
-        <div className="fixed w-full bg-white bottom-0 p-5">
-          <h3>Velkommen til MeeW Apps!</h3>
-          <p className="pb-4">Din app-udviklings template til alle behov dine app-udviklings behov!</p>
+        <div className='fixed  object-cover h-45  w-auto mt-[100px]'>
+        <IonImg src={img}/>
+        <h3 className='text-white mt-4 text-center'>{t('landingPage.motMsg')}</h3>
+        </div>
+        <div className="fixed w-full bottom-0 p-5">
+          <h1>{t('landingPage.welcomeT')}</h1>
+          <p className=' indent-5 subpixel-antialiased  font-serif mb-5 text-base mt-5'>{t('landingPage.welcomeMsg')}</p>
 
-          <IonButton onClick={() => router.push('/login')} expand="full" className="h-[50px]">
-            Kom i gang
+          <IonButton onClick={() => router.push('/login')} expand="full" className="h-[50px] bottom-0">
+           <h2 className='text-white'>{t('landingPage.goButton')}</h2>
           </IonButton>
         </div>
       </IonContent>
