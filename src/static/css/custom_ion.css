@@ -1,0 +1,14 @@
+ion-tab-bar{
+--background: #a9bab8;
+--color: #a9bab8;
+}
+
+ion-toolbar{
+    --background: #a9bab8;
+}
+
+ion-tab-button{
+    --background: #a9bab8;
+    --color: black;
+    --color-selected: red;
+}

@@ -11,16 +11,16 @@ const LandingPage: React.FC = () => {
   const router = useIonRouter();
   return (
     <IonPage>
-      <IonContent fullscreen>
-        <div className='fixed  object-cover h-45  w-auto mt-[100px]'>
-        <IonImg src={img}/>
+      <IonContent fullscreen className='fixed h-full w-full'>
+      <div className=' mx-auto h-15  w-auto mt-[30px] flex flex-center flex-col'>
+      <IonImg className='max-w-xl mx-auto' src={img}/>
         <h3 className='text-white mt-4 text-center'>{t('landingPage.motMsg')}</h3>
         </div>
         <div className="fixed w-full bottom-0 p-5">
           <h1>{t('landingPage.welcomeT')}</h1>
           <p className=' indent-5 subpixel-antialiased  font-serif mb-5 text-base mt-5'>{t('landingPage.welcomeMsg')}</p>
 
-          <IonButton onClick={() => router.push('/login')} expand="full" className="h-[50px] bottom-0">
+          <IonButton onClick={() => router.push('/login')} expand="full" className="h-[50px] w-auto bottom-0">
            <h2 className='text-white'>{t('landingPage.goButton')}</h2>
           </IonButton>
         </div>

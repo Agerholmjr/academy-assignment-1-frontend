@@ -73,13 +73,11 @@ const App: React.FC = () => {
           <Switch>
           <Route exact path="/testPage" component={testPage} />
             <Route exact path="/home" component={HomePage} />
-            <Route exact path="/home" component={HomePage} />
             <Route exact path="/welcome" component={LandingPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
             <Route exact path="/resetpassword" component={ResetPasswordPage} />
             <Route exact path="/register" component={RegisterPage} />
-            <Route exact path="/intro" component={IntroPage} />
             <Route path="/ui-library" component={UILibRouter} />
             <Route path="/*">
               <Redirect to={session ? '/home' : '/welcome'} />

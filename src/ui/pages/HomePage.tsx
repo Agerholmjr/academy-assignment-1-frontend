@@ -20,6 +20,7 @@ import {
   useIonRouter,
 } from '@ionic/react';
 import { peopleOutline, ticketOutline, walletOutline, cameraOutline } from 'ionicons/icons';
+import 'static/css/custom_ion.css';
 
 import Tab1 from './tabs/tab-1/Tab1';
 import Tab2 from './tabs/tab-2/Tab2';
@@ -68,7 +69,7 @@ const HomePage: React.FC = () => {
               </Route>
             </IonRouterOutlet>
 
-            <IonTabBar slot="bottom" color={'white-background'} class={'h-[70px] border-t-[1px] border'}>
+            <IonTabBar slot="bottom" class={'h-[70px] border-t-[1px] border'}>
               {pages.map((p, i) => {
                 return (
                   <IonTabButton key={i} tab={`tab${i}`} href={p.path}>

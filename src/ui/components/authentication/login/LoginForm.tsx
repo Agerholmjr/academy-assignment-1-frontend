@@ -77,13 +77,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
   return (
     <div className="flex h-full justify-center items-center w-full">
       <form className="sm:w-[400px] w-3/4" onSubmit={handleLogin}>
-        <IonText className="text-primary-brand text-xl font-extrabold">{t('authentication.login')}</IonText>
-        <IonItem lines="none" color={'white-background'} class="border border-grey-text mt-8">
+        <IonText className="text-white text-xl font-extrabold">{t('authentication.login')}</IonText>
+        <IonItem lines="none" color={'white-background'} class="border-2 border-black border-grey-text mt-8">
           <IonInput value={email} placeholder={t('authentication.email')} onIonChange={(e) => setEmail(e.detail.value ?? '')} type="email" required class="h-[59px] items-center" />
           <IonIcon icon={at} size="medium" className="text-primary-brand" />
         </IonItem>
 
-        <IonItem lines="none" color={'white-background'} class="border border-grey-text mt-5">
+        <IonItem lines="none" color={'white-background'} class="border-2 border-black border-grey-text mt-5">
           <IonInput
             value={password}
             placeholder={t('authentication.password')}
@@ -106,13 +106,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
         </div>
 
         <div className="w-full flex justify-end my-3">
-          <IonText onClick={handleForgottenPassword} className="text-primary-brand hover:cursor-pointer">
+          <IonText onClick={handleForgottenPassword} className="text-white hover:cursor-pointer">
             {t('authentication.forgotPassword')}
           </IonText>
         </div>
-
+       
         <Separator text={t('authentication.or')} />
-
+        
         <div className="flex justify-between gap-2">
           <SocialLoginButton provider="facebook" onClick={() => signInWithThirdParty('facebook')} />
           <SocialLoginButton provider="google" onClick={() => signInWithThirdParty('google')} />
