@@ -10,16 +10,13 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonMenu,
   IonMenuButton,
   IonPage,
-  IonTitle,
   IonToolbar,
-  IonItem,
   IonButton,
   useIonRouter,
 } from '@ionic/react';
-import { peopleOutline, ticketOutline, walletOutline, cameraOutline } from 'ionicons/icons';
+import { personCircleOutline, analyticsOutline, cameraOutline, barbellOutline } from 'ionicons/icons';
 import 'static/css/custom_ion.css';
 
 import Tab1 from './tabs/tab-1/Tab1';
@@ -96,22 +93,22 @@ const pages = [
     redirect: true,
   },
   {
-    name: 'people',
-    icon: peopleOutline,
+    name: 'training',
+    icon: barbellOutline,
     path: '/tab2',
     component: Tab2,
     redirect: false,
   },
   {
-    name: 'ticket',
-    icon: ticketOutline,
+    name: 'stats',
+    icon: analyticsOutline,
     path: '/tab3',
     component: Tab3,
     redirect: false,
   },
   {
-    name: 'wallet',
-    icon: walletOutline,
+    name: 'profil',
+    icon: personCircleOutline,
     path: '/tab4',
     component: Tab4,
     redirect: false,

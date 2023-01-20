@@ -6,13 +6,14 @@ import chest from'static/assets/img/chest.jpeg';
 import back from 'static/assets/img/back.png';
 import leg from 'static/assets/img/legs.jpeg';
 import shoulder from 'static/assets/img/shoulder.webp';
+import { t } from 'i18next';
 
 
 const Tab2: React.FC = () => (
 <IonContent fullscreen className="fixed h-full w-full">
         <div className=' mx-auto h-15  w-auto mt-[30px] flex flex-center flex-col'>
           <IonImg className='mb-8 max-w-xl mx-auto' src={logo}/>
-        <h1> Choose your exercise</h1>
+        <h1 className='text-center'>{t('tab2.chooseExercise')}</h1>
         </div>
             <div className="w-full border-2 border-black  mx-auto h-15  w-auto mt-[30px] flex flex-center flex-col">
              <div>
@@ -30,7 +31,7 @@ const Tab2: React.FC = () => (
         <IonCol>
             <div>
           <IonButton routerLink='/tabs/tab1/details2' className='h-fit' color="#1f2937" >
-          <IonImg className='mb-8 max-w-xl mx-auto' src={back}/>
+          <IonImg className='mb-4 max-w-xl mx-auto' src={back}/>
         </IonButton>
           <p className='text-center'>Back </p>
           </div>
