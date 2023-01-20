@@ -14,7 +14,7 @@ const LandingPage: React.FC = () => {
       <IonContent fullscreen className='fixed h-full w-full'>
       <div className=' mx-auto h-15  w-auto mt-[30px] flex flex-center flex-col'>
       <IonImg className='max-w-xl mx-auto' src={img}/>
-        <h3 className='text-white mt-4 text-center'>{t('landingPage.motMsg')}</h3>
+        <h3 className='text-white mt-4 text-center'>{t('landingPage.motivationMsg')}</h3>
         </div>
         <div className="fixed w-full bottom-0 p-5">
           <h1>{t('landingPage.welcomeT')}</h1>

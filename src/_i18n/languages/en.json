@@ -3,7 +3,7 @@
     "title": "Welcome to MeeWs frontend template",
     "signIn": "Sign in",
     "welcomeT": "Welcome to The Fitness Power",
-    "motMsg":"Bring the power, bring the YOU",
+    "motivationMsg":"Bring the power, bring the YOU",
     "welcomeMsg":"Your app for updated fitness exercises to get your dream physic!",
     "goButton": "Let's work"
   },
@@ -40,6 +40,21 @@
   },
 
   "tab2":{
-    "chooseExercise":"Choose your exercise"
+    "chooseExercise":"Choose your exercise",
+    "catChest":"Chest ",
+    "catBack":"Back",
+    "catLegs":"Legs",
+    "catShoulders":"Shoulders"
+  },
+  
+  "profileForm":{
+    "yourProfile": "your profile",
+    "yourEmail": "your email",
+    "yourPassword": "your password",
+    "yourGender": "gender",
+    "yourAge": "your age",
+    "yourHeight": "your height in centimeter",
+    "yourWeight": "your weight in kilograms",
+    "saveChanges": "save changes"
   }
 }

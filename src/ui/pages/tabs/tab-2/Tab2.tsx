@@ -20,20 +20,20 @@ const Tab2: React.FC = () => (
           <IonGrid>
         <IonRow>
           <IonCol>
-            <div>
+            <div className='text-center'>
           <IonButton routerLink='/tabs/tab1/details' className='h-fit' color="#1f2937">
              <IonImg className='mb-4 max-w-xl mx-auto' src={chest}/>
         </IonButton>
-          <p className='text-center'>Chest </p>
+          <p className='text-center'>{t('tab2.catChest')}</p>
           </div>
         
         </IonCol>
         <IonCol>
-            <div>
+            <div className='text-center'>
           <IonButton routerLink='/tabs/tab1/details2' className='h-fit' color="#1f2937" >
           <IonImg className='mb-4 max-w-xl mx-auto' src={back}/>
         </IonButton>
-          <p className='text-center'>Back </p>
+          <p className='text-center'>{t('tab2.catBack')}</p>
           </div>
         
         </IonCol>
@@ -41,20 +41,20 @@ const Tab2: React.FC = () => (
 
         <IonRow>
         <IonCol>
-            <div className=''>
+            <div className='text-center'>
           <IonButton routerLink='/tab1' className='h-fit' color="#1f2937" >
           <IonImg className='mb-4 max-w-xl mx-auto w-full' src={leg}/>
         </IonButton>
-          <p className='text-center'>Legs </p>
+          <p className='text-center'>{t('tab2.catLegs')} </p>
           </div>
         
         </IonCol>
         <IonCol>
-            <div>
+            <div className='text-center'>
           <IonButton routerLink='/tabs/tab1/details4' className='h-fit' color="#1f2937">
           <IonImg className='mb-4 max-w-xl mx-auto' src={shoulder}/>
         </IonButton>
-          <p className='text-center'>Shoulders </p>
+          <p className='text-center'>{t('tab2.catShoulders')} </p>
           </div>
         
         </IonCol>
