@@ -12,3 +12,12 @@ ion-tab-button{
     --color: black;
     --color-selected: red;
 }
+
+ion-checkbox.custom::part(container) {
+    background-color: white ;
+    --checkmark-color: black;
+}
+
+ion-checkbox.custom{
+    --background-color-checked: #000000;
+ }

@@ -45,6 +45,7 @@ import ResetPasswordPage from 'ui/pages/ResetPasswordPage';
 import HomePage from 'ui/pages/HomePage';
 import { AntdThemeWrapper } from './ui/theme/AntdThemeWrapper';
 import testPage from 'ui/pages/testPage';
+import profilePage from 'ui/pages/profilePage';
 
 setupIonicReact({ mode: 'ios' });
 
@@ -71,7 +72,8 @@ const App: React.FC = () => {
       <AntdThemeWrapper>
         <IonReactRouter>
           <Switch>
-          <Route exact path="/testPage" component={testPage} />
+            <Route exact path="/testPage" component={testPage} />
+            <Route exact path="/profilePage" component={profilePage} />
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/welcome" component={LandingPage} />
             <Route exact path="/login" component={LoginPage} />

@@ -6,6 +6,7 @@ import { supabase } from 'apis/supabaseClient';
 import SocialLoginButton from '../social-login-buttons/SocialLoginButton';
 import { Provider } from '@supabase/supabase-js';
 import Separator from 'ui/components/generic/Separator';
+import CheckIfProfileExsists from 'static/functions/checkIfProfileExsists';
 import { t } from 'i18next';
 
 type LoginFormProps = {
@@ -17,8 +18,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
   const [password, setPassword] = useState<string>('');
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
   const [isPasswordRevealed, setIsPasswordRevealed] = useState<boolean>(false);
-
+  
   const router = useIonRouter();
+	const authUser = useAuthUserStore((state) => state.authUser);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
+
+  
   const [present, dismiss] = useIonLoading();
   const [presentAlert] = useIonAlert();
 
@@ -38,7 +44,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
     if (data.user && data.user.aud === 'authenticated') {
       setAuthUser(data.user);
       await dismiss();
-      router.push('/home');
+      if(await CheckIfProfileExsists()){
+        router.push('/home');
+     }else{
+        router.push('/profilePage');
+     }
     } else {
       await dismiss();
       await presentAlert({
@@ -48,6 +58,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
       });
     }
   };
+
 
   const signInWithThirdParty = async (variant: Provider) => {
     await present({ message: t('authentication.redirecting') });

@@ -24,6 +24,7 @@ import Tab2 from './tabs/tab-2/Tab2';
 import Tab3 from './tabs/tab-3/Tab3';
 import Tab4 from './tabs/tab-4/Tab4';
 import { supabase } from 'apis/supabaseClient';
+import CheckIfProfileExsists from 'static/functions/checkIfProfileExsists';
 import { useAuthUserStore } from 'store/user';
 
 const HomePage: React.FC = () => {
@@ -33,7 +34,11 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     if (!authUser) router.push('/login');
+    if(!CheckIfProfileExsists){
+        router.push('/signUp');
+     }
   }, [router, authUser]);
+ 
 
   const handleLogOut = async () => {
     resetAuthUser();

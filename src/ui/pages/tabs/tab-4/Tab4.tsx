@@ -1,13 +1,14 @@
 import React from 'react';
 import './tab-4.module.css';
 import { IonContent, IonTitle } from '@ionic/react';
-import ProfileForm from 'ui/components/profile/profileForm';
+
+import EditProfileForm from 'ui/components/profile/editProfileForm';
 
 const Tab4: React.FC = () => {
   return (
     <IonContent color={'white-background'}>
       <IonTitle>Tab4</IonTitle>
-      <ProfileForm></ProfileForm>
+      <EditProfileForm></EditProfileForm>
     </IonContent>
   );
 };
