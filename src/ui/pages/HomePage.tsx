@@ -24,8 +24,9 @@ import Tab2 from './tabs/tab-2/Tab2';
 import Tab3 from './tabs/tab-3/Tab3';
 import Tab4 from './tabs/tab-4/Tab4';
 import { supabase } from 'apis/supabaseClient';
-import CheckIfProfileExsists from 'static/functions/checkIfProfileExsists';
+
 import { useAuthUserStore } from 'store/user';
+import { t } from 'i18next';
 
 const HomePage: React.FC = () => {
   const router = useIonRouter();
@@ -34,11 +35,12 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     if (!authUser) router.push('/login');
-    if(!CheckIfProfileExsists){
-        router.push('/signUp');
-     }
+    if(!(checkIfProfileExsists)){
+      router.push('/signUp');
+   }
   }, [router, authUser]);
- 
+
+  
 
   const handleLogOut = async () => {
     resetAuthUser();
@@ -46,12 +48,33 @@ const HomePage: React.FC = () => {
     router.push('/login');
   };
 
+  const checkIfProfileExsists = async () => {
+    const{ data ,error } = await supabase 
+    .from('fitnessprofile')
+    .select()
+    .match({ 'id':authUser?.id })
+    .single();
+
+    if(data){
+        console.log('DATA');
+    return true;
+    }
+
+    if(error){
+        console.log('HERE');
+        
+    return false;
+    }
+  };
+
+
+
   return (
     <IonPage id="main-content">
       <IonHeader>
         <IonToolbar>
           <IonButton onClick={handleLogOut} slot="end">
-            Log ud
+            {t('authentication.logout')}
           </IonButton>
           <IonButtons slot="start">
             <IonMenuButton />
@@ -89,6 +112,7 @@ const HomePage: React.FC = () => {
 
 export default HomePage;
 
+
 const pages = [
   {
     name: 'photo',
@@ -121,3 +145,5 @@ const pages = [
 ];
 
 const menuItems = [{ name: 'Settings' }, { name: 'Account' }, { name: 'Questionnaire' }, { name: 'Logout' }];
+
+

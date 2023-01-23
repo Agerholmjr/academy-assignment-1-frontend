@@ -8,6 +8,7 @@
     "goButton": "Let's work"
   },
   "authentication": {
+    "logout": "Log out",
     "login": "Login",
     "signUp": "Sign up",
     "signOut": "Sign out",
@@ -48,13 +49,31 @@
   },
   
   "profileForm":{
-    "yourProfile": "your profile",
+    "yourProfile": "Your profile",
     "yourEmail": "your email",
     "yourPassword": "your password",
+    "confPassword": "confirm password",
     "yourGender": "gender",
     "yourAge": "your age",
-    "yourHeight": "your height in centimeter",
-    "yourWeight": "your weight in kilograms",
-    "saveChanges": "save changes"
+    "yourHeight": "your height in CM",
+    "yourWeight": "your weight in KG",
+    "saveChanges": "save changes",
+    "yourUsername": "Your username",
+    "createProfile": "Create your profile",
+    "gender":"Gender",
+    "login": "Login here"
+  },
+
+  "editProfileForm":{
+    "profile": "Profile",
+    "email": "Email",
+    "password": "Password",
+    "age": "Age",
+    "height": "Height",
+    "weight": "Weight",
+    "saveChanges": "Save changes",
+    "username": "Username",
+    "gender":"Gender"
   }
+
 }

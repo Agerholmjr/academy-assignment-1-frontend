@@ -10,6 +10,8 @@ import { t } from 'i18next';
 
 
 const Tab2: React.FC = () => (
+
+
 <IonContent fullscreen className="fixed h-full w-full">
         <div className=' mx-auto h-15  w-auto mt-[30px] flex flex-center flex-col'>
           <IonImg className='mb-8 max-w-xl mx-auto' src={logo}/>
@@ -21,7 +23,7 @@ const Tab2: React.FC = () => (
         <IonRow>
           <IonCol>
             <div className='text-center'>
-          <IonButton routerLink='/tabs/tab1/details' className='h-fit' color="#1f2937">
+          <IonButton routerLink='/tab1/details' className='h-fit' color="#1f2937">
              <IonImg className='mb-4 max-w-xl mx-auto' src={chest}/>
         </IonButton>
           <p className='text-center'>{t('tab2.catChest')}</p>

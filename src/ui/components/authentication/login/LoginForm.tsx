@@ -6,7 +6,6 @@ import { supabase } from 'apis/supabaseClient';
 import SocialLoginButton from '../social-login-buttons/SocialLoginButton';
 import { Provider } from '@supabase/supabase-js';
 import Separator from 'ui/components/generic/Separator';
-import CheckIfProfileExsists from 'static/functions/checkIfProfileExsists';
 import { t } from 'i18next';
 
 type LoginFormProps = {
@@ -34,6 +33,27 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
     setIsSubmitDisabled(!(email.includes('@') && password !== ''));
   }, [email, password]);
 
+
+  const checkIfProfileExsists = async () => {
+    const{ data ,error } = await supabase 
+    .from('fitnessprofile')
+    .select()
+    .match({ 'id':authUser?.id })
+    .single();
+
+    if(data){
+        console.log('DATA');
+    return true;
+    }
+
+    if(error){
+        console.log('HERE');
+        
+    return false;
+    }
+  };
+
+
   const togglePassword = () => setIsPasswordRevealed(!isPasswordRevealed);
 
   const handleLogin = async (e: { preventDefault: () => void }) => {
@@ -44,7 +64,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
     if (data.user && data.user.aud === 'authenticated') {
       setAuthUser(data.user);
       await dismiss();
-      if(await CheckIfProfileExsists()){
+      if(await checkIfProfileExsists()){
         router.push('/home');
      }else{
         router.push('/profilePage');
@@ -78,6 +98,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
     if (togglePasswordButtonType === 'icon') {
       return <IonIcon icon={isPasswordRevealed ? eyeOutline : eyeOffOutline} size="medium" onClick={togglePassword} className="text-primary-brand" />;
     }
+
+
+
     return (
       <div className="mr-1 text-sm font-bold cursor-pointer text-primary-brand" onClick={togglePassword}>
         {isPasswordRevealed ? <IonText>{t('authentication.hide')}</IonText> : <IonText>{t('authentication.show')}</IonText>}
