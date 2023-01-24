@@ -46,6 +46,10 @@ import HomePage from 'ui/pages/HomePage';
 import { AntdThemeWrapper } from './ui/theme/AntdThemeWrapper';
 import testPage from 'ui/pages/testPage';
 import profilePage from 'ui/pages/profilePage';
+import Details from 'ui/pages/tabs/details/Details';
+import Details2 from 'ui/pages/tabs/details/Details2';
+import Details3 from 'ui/pages/tabs/details/Details3';
+import Details4 from 'ui/pages/tabs/details/Details4';
 
 setupIonicReact({ mode: 'ios' });
 
@@ -72,7 +76,10 @@ const App: React.FC = () => {
       <AntdThemeWrapper>
         <IonReactRouter>
           <Switch>
-            <Route exact path="/testPage" component={testPage} />
+            <Route exact path="/tab2/:category/details" component={Details}></Route>
+      {/*       <Route exact path="/tab2/details2" component={Details2}></Route>
+            <Route exact path="/tab2/details3" component={Details3}></Route>
+            <Route exact path="/tab2/details4" component={Details4}></Route> */}
             <Route exact path="/profilePage" component={profilePage} />
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/welcome" component={LandingPage} />

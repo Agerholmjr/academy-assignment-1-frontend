@@ -53,15 +53,18 @@
     "yourEmail": "your email",
     "yourPassword": "your password",
     "confPassword": "confirm password",
-    "yourGender": "gender",
-    "yourAge": "your age",
-    "yourHeight": "your height in CM",
-    "yourWeight": "your weight in KG",
+    "yourGender": "Your gender",
+    "yourAge": "Your age",
+    "yourHeight": "Your height in CM",
+    "yourWeight": "Your weight in KG",
     "saveChanges": "save changes",
     "yourUsername": "Your username",
     "createProfile": "Create your profile",
     "gender":"Gender",
-    "login": "Login here"
+    "login": "Login here",
+    "genderM": "Male",
+    "genderF": "Female",
+    "genderO": "Other"
   },
 
   "editProfileForm":{
@@ -74,6 +77,12 @@
     "saveChanges": "Save changes",
     "username": "Username",
     "gender":"Gender"
+  },
+
+  "stopWatch":{
+    "stopWatch": "Stopwatch"
+
   }
+  
 
 }

@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { IonButton, IonCheckbox, IonContent, IonImg, } from '@ionic/react';
 import img from 'static/assets/img/gym.jpeg';
 import { IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
-//import supabase from '../config/supabaseClient';
-import { Redirect, Route, useHistory } from 'react-router-dom';
 import 'static/css/custom_ion.css';
 import { t } from 'i18next';
+import { supabase } from 'apis/supabaseClient';
+import { useAuthUserStore } from 'store/user';
 
 
 
 const ProfileForm: React.FC = () => {
-  const [email, setEmail] = useState<any>();
+const authUser = useAuthUserStore((state) => state.authUser);
+  const [username, setUsername] = useState<any>();
   const [password, setPassword] = useState<any>();
   const [confirmedPassword, setConfirmedPassword] = useState<any>();
   const [gender, setGender] = useState<string>();
@@ -49,13 +50,14 @@ const ProfileForm: React.FC = () => {
 
     }
         
-  //  addUser();
+   addProfile();
   };
   
-  /* const addUser = async () => {
-    const{data,error} = await supabase
-    .from('users')
-    .insert([{email, password, gender, age, height, weight}])
+  const addProfile = async () => {
+    const id = authUser?.id;
+    const{ data,error } = await supabase
+    .from('fitnessprofile')
+    .insert([{ id, username, gender, age, height, weight }])
     .select();
     
     
@@ -67,9 +69,9 @@ const ProfileForm: React.FC = () => {
    if(data){
       console.log(data);
       setFormError(null);
-      history.push('/tabs/tab1');
+      
    }
-  }; */
+  };
 
     
 
@@ -83,24 +85,26 @@ const ProfileForm: React.FC = () => {
           <div className="w-full text-center mx-auto h-15  w-6/12 my-3 flex flex-center flex-col">
                     <form onSubmit={(e) => handleSumbit(e)}>
                    
-                      <IonLabel className="block mb-2">{t('profileForm.yourEmail')}</IonLabel>
-                      <IonInput type="email" name="email" id="email" className="border-2 bg-white border-black border-grey-text my-2 " placeholder="name@mail.com" required onIonInput={(e:any) => setEmail(e.target.value)} ></IonInput>
+                      <IonLabel className="block mb-2">{t('profileForm.yourUsername')}</IonLabel>
+                      <IonInput type="text" name="username" id="username" className="border-2 bg-white border-black border-grey-text my-2 " placeholder="funnybunny" required onIonInput={(e:any) => setUsername(e.target.value)} ></IonInput>
                 
-                      <IonLabel className="block mb-2">{t('profileForm.yourPassword')}</IonLabel>
-                      <IonInput type="password" name="password" id="password" placeholder="••••••••" className="border-2  bg-white border-black border-grey-text my-2" required onIonInput={(e:any) => setPassword(e.target.value)}></IonInput>
-                
-                      <IonLabel className="block mb-2">{t('profileForm.confPassword')}</IonLabel>
-                      <IonInput type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" className="border-2  bg-white border-black border-grey-text my-2" required onIonInput={(e:any) => setConfirmedPassword(e.target.value)}></IonInput>
-                           
-                            <div className='flex mx-auto my-4 w-full text-center mt-5'>
+                      <h1>HERE</h1>
+                            <div className='mx-auto min-[536px]:flex-row flex-col flex-wrap items-stretch my-4 w-full flex justify-items-start mt-5'>
+                                
+                                <div className='min-w-[100px]'>
                             <IonCheckbox id="inline-checkbox" value="" className="custom" onIonChange={(e:any) => setGenderM(e.target.checked)} ></IonCheckbox>
-                            <IonLabel  className="">Male </IonLabel>
-                      
+                            <IonLabel  className="align-middle ">M </IonLabel>
+                            </div>
+
+                            <div className='min-w-[50px]'>
                             <IonCheckbox id="inline-2-checkbox" value="" className="custom" onIonChange={(e:any) => setGenderF(e.target.checked)}  ></IonCheckbox>
-                            <IonLabel className="">Female</IonLabel>
-                        
-                            <IonCheckbox  id="inline-3-checkbox" value="" className="custom" onIonChange={(e:any) => setGenderO(e.target.checked)}></IonCheckbox>
-                            <IonLabel className="">Other</IonLabel>
+                            <IonLabel className="align-middle ">F</IonLabel>
+                            </div>
+
+                            <div className='min-w-[100px]'>
+                            <IonCheckbox  id="inline-3-checkbox" value="" className="custom " onIonChange={(e:any) => setGenderO(e.target.checked)}></IonCheckbox>
+                            <IonLabel className="align-middle ">O</IonLabel>
+                            </div>
                             </div>
                      
                       <IonLabel className="">{t('profileForm.yourAge')}</IonLabel>

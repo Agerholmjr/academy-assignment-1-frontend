@@ -34,9 +34,11 @@ const HomePage: React.FC = () => {
   const resetAuthUser = useAuthUserStore((state) => state.resetAuthUser);
 
   useEffect(() => {
+    console.log(authUser?.id);
     if (!authUser) router.push('/login');
-    if(!(checkIfProfileExsists)){
-      router.push('/signUp');
+    if(!checkIfProfileExsists(authUser?.id)){
+      console.log('In if'); 
+      router.push('/profilePage');
    }
   }, [router, authUser]);
 
@@ -48,25 +50,26 @@ const HomePage: React.FC = () => {
     router.push('/login');
   };
 
-  const checkIfProfileExsists = async () => {
-    const{ data ,error } = await supabase 
+  const checkIfProfileExsists = async (id: string | undefined) => {
+   try{
+    const { data, error } = await supabase
     .from('fitnessprofile')
     .select()
-    .match({ 'id':authUser?.id })
-    .single();
-
-    if(data){
-        console.log('DATA');
-    return true;
-    }
-
+    .match({ 'id':id })
+    .maybeSingle(); 
+    console.log('TRY HERE');
     if(error){
-        console.log('HERE');
-        
-    return false;
+      throw new Error;
     }
-  };
+  }catch(error){
+    console.log('catch error');
+  }
+    return true;
 
+  };
+      
+    
+  
 
 
   return (

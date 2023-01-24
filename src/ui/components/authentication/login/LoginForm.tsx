@@ -34,26 +34,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
   }, [email, password]);
 
 
-  const checkIfProfileExsists = async () => {
-    const{ data ,error } = await supabase 
-    .from('fitnessprofile')
-    .select()
-    .match({ 'id':authUser?.id })
-    .single();
-
-    if(data){
-        console.log('DATA');
-    return true;
-    }
-
-    if(error){
-        console.log('HERE');
-        
-    return false;
-    }
-  };
-
-
   const togglePassword = () => setIsPasswordRevealed(!isPasswordRevealed);
 
   const handleLogin = async (e: { preventDefault: () => void }) => {
@@ -64,11 +44,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
     if (data.user && data.user.aud === 'authenticated') {
       setAuthUser(data.user);
       await dismiss();
-      if(await checkIfProfileExsists()){
         router.push('/home');
-     }else{
-        router.push('/profilePage');
-     }
     } else {
       await dismiss();
       await presentAlert({
