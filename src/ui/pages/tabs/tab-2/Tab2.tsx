@@ -7,6 +7,7 @@ import back from 'static/assets/img/back.png';
 import leg from 'static/assets/img/legs.jpeg';
 import shoulder from 'static/assets/img/shoulder.webp';
 import { t } from 'i18next';
+import ExerciseOption from 'ui/components/ExercisOptions';
 
 
 const Tab2: React.FC = () => (
@@ -22,35 +23,19 @@ const Tab2: React.FC = () => (
           <IonGrid>
         <IonRow>
           <IonCol>
-            <div className='text-center'>
-          <IonButton href='/tab2/chest/details' className='h-fit' color="#1f2937">
-             <IonImg className='mb-4 max-w-xl mx-auto' src={chest}/>
-        </IonButton>
-          <p className='text-center'>{t('tab2.catChest')}</p>
-          </div>
-        
+            <ExerciseOption link = {'/tab2/chest/details'} img = {chest} title = {t('tab2.catChest')}/> 
         </IonCol>
+
         <IonCol>
-            <div className='text-center'>
-          <IonButton href='/tab2/back/details' className='h-fit' color="#1f2937" >
-          <IonImg className='mb-4 max-w-xl mx-auto' src={back}/>
-        </IonButton>
-          <p className='text-center'>{t('tab2.catBack')}</p>
-          </div>
-        
+          <ExerciseOption link={'/tab2/back/details'} img={back} title={t('tab2.catBack')}/>
         </IonCol>
         </IonRow>
 
         <IonRow>
         <IonCol>
-            <div className='text-center'>
-          <IonButton href='/tab2/legs/details' className='h-fit' color="#1f2937" >
-          <IonImg className='mb-4 max-w-xl mx-auto w-full' src={leg}/>
-        </IonButton>
-          <p className='text-center'>{t('tab2.catLegs')} </p>
-          </div>
-        
-        </IonCol>
+        <ExerciseOption link={'/tab2/legs/details'} img={leg} title={t('tab2.catLegs')}/>
+         </IonCol>
+
         <IonCol>
             <div className='text-center'>
           <IonButton href='/tab2/shoulders/details' className='h-fit' color="#1f2937">
