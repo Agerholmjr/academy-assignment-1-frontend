@@ -1,28 +1,26 @@
 import React, {} from 'react';
 import { useParams } from 'react-router';
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/react';
 import img from 'static/assets/img/gym.jpeg';
 import { useEffect, useState } from 'react';
 import { supabase } from 'apis/supabaseClient';
 
 
 const Details: React.FC = () => {
-    console.log('linje 10');
+    
     const [fetchError, setFetchError] = useState<string | null>(null);
     const [exercise, setExercise] = useState<any>(null);
     const { category }:any = useParams();
-    const [urlParameter, setUrlParameter] = useState(category);
 
     
     useEffect(() => {
         
-        console.log('HERE');
-
          const getExercise = async () => {
+           
             const{ data,error } = await supabase
             .from('exercises')
             .select()
-            .eq('category', 'chest')
+            .eq('category', category)
             .single();
 
             if(error){
@@ -44,15 +42,15 @@ const Details: React.FC = () => {
 
 
     return (
-        <IonContent className="bg-gray-100 dark:bg-gray-800">
+        <IonContent className="bg-gray-100 ">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <img className="object-cover h-48 w-96 my-10" src={ img } alt="logo"></img>
-            <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0">
 
             <IonHeader>
                 <IonToolbar color="primary">
                     <IonButtons slot="start">
-                        <IonBackButton defaultHref="/tabs2"></IonBackButton>
+                        <IonBackButton defaultHref="/tab2"></IonBackButton>
                         <IonTitle>Go back</IonTitle>
                     </IonButtons>
                 </IonToolbar>

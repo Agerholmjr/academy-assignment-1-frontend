@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { IonButton, IonCheckbox, IonContent, IonImg, } from '@ionic/react';
+import React, { useEffect, useState } from 'react';
+import { IonButton, IonCheckbox, IonContent, IonImg, useIonRouter, } from '@ionic/react';
 import img from 'static/assets/img/gym.jpeg';
 import { IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
 import 'static/css/custom_ion.css';
 import { t } from 'i18next';
 import { supabase } from 'apis/supabaseClient';
 import { useAuthUserStore } from 'store/user';
+import { useProfileState } from './profileState';
+import { Route, Router } from 'workbox-routing';
 
 
 
@@ -14,7 +16,7 @@ const authUser = useAuthUserStore((state) => state.authUser);
   const [username, setUsername] = useState<any>();
   const [password, setPassword] = useState<any>();
   const [confirmedPassword, setConfirmedPassword] = useState<any>();
-  const [gender, setGender] = useState<string>();
+  const [gender, setGender] = useState<string>('');
   const [genderM, setGenderM] = useState(false);
   const [genderF, setGenderF] = useState(false);
   const [genderO, setGenderO] = useState(false);
@@ -22,6 +24,19 @@ const authUser = useAuthUserStore((state) => state.authUser);
   const [height, setHeight] = useState<any>();
   const [weight, setWeight] = useState<any>();
   const [formError, setFormError] = useState<any>(null);
+  const router = useIonRouter();
+  const profile = useProfileState((state) => state.profile);
+  const setProfile = useProfileState((state) => state.setProfile);
+
+
+  useEffect(() => {
+      if(!authUser){
+          router.push('/login');
+      }
+      if(profile){
+          router.push('/home');
+      }
+  }, [router, authUser, profile]); 
 
   const handleSumbit =(event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,6 +66,8 @@ const authUser = useAuthUserStore((state) => state.authUser);
     }
         
    addProfile();
+   setProfile(true);
+   router.push('/home');
   };
   
   const addProfile = async () => {
@@ -67,6 +84,7 @@ const authUser = useAuthUserStore((state) => state.authUser);
    }
 
    if(data){
+
       console.log(data);
       setFormError(null);
       
@@ -96,7 +114,7 @@ const authUser = useAuthUserStore((state) => state.authUser);
                             <IonLabel  className="align-middle ">M </IonLabel>
                             </div>
 
-                            <div className='min-w-[50px]'>
+                            <div className='min-w-[px]'>
                             <IonCheckbox id="inline-2-checkbox" value="" className="custom" onIonChange={(e:any) => setGenderF(e.target.checked)}  ></IonCheckbox>
                             <IonLabel className="align-middle ">F</IonLabel>
                             </div>

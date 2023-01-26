@@ -18,6 +18,7 @@ import {
 } from '@ionic/react';
 import { personCircleOutline, analyticsOutline, cameraOutline, barbellOutline } from 'ionicons/icons';
 import 'static/css/custom_ion.css';
+import { useProfileState } from 'ui/components/profile/profileState';
 
 import Tab1 from './tabs/tab-1/Tab1';
 import Tab2 from './tabs/tab-2/Tab2';
@@ -29,42 +30,52 @@ import { useAuthUserStore } from 'store/user';
 import { t } from 'i18next';
 
 const HomePage: React.FC = () => {
+  const profile = useProfileState((state) => state.profile);
+  const setProfile = useProfileState((state) => state.setProfile);
+  const resetProfile = useProfileState((state) => state.resetProfile);
+
   const router = useIonRouter();
   const authUser = useAuthUserStore((state) => state.authUser);
   const resetAuthUser = useAuthUserStore((state) => state.resetAuthUser);
 
   useEffect(() => {
-    console.log(authUser?.id);
+
+  
+    
     if (!authUser) router.push('/login');
-    if(!checkIfProfileExsists(authUser?.id)){
-      console.log('In if'); 
-      router.push('/profilePage');
-   }
+    if(authUser){
+    checkIfProfileExsists(authUser?.id);
+    }
+   
   }, [router, authUser]);
 
   
 
   const handleLogOut = async () => {
     resetAuthUser();
+    resetProfile();
     await supabase.auth.signOut();
     router.push('/login');
   };
 
   const checkIfProfileExsists = async (id: string | undefined) => {
-   try{
+   
     const { data, error } = await supabase
     .from('fitnessprofile')
     .select()
     .match({ 'id':id })
-    .maybeSingle(); 
-    console.log('TRY HERE');
-    if(error){
-      throw new Error;
+    .single(); 
+    
+    if(data){
+      setProfile(true);
+      router.push('/home');
     }
-  }catch(error){
-    console.log('catch error');
-  }
-    return true;
+
+    if(error){
+      setProfile(false);
+     router.push('/profilePage');
+    }
+
 
   };
       

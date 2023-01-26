@@ -81,8 +81,12 @@
 
   "stopWatch":{
     "stopWatch": "Stopwatch"
+  },
 
+  "photo":{
+    "takePhoto": "Take your progress picture"
   }
+
   
 
 }
