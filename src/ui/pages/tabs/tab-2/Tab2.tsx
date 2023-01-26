@@ -37,13 +37,7 @@ const Tab2: React.FC = () => (
          </IonCol>
 
         <IonCol>
-            <div className='text-center'>
-          <IonButton href='/tab2/shoulders/details' className='h-fit' color="#1f2937">
-          <IonImg className='mb-4 max-w-xl mx-auto' src={shoulder}/>
-        </IonButton>
-          <p className='text-center'>{t('tab2.catShoulders')} </p>
-          </div>
-        
+        <ExerciseOption link={'/tab2/shoulders/details'} img={shoulder} title={t('tab2.catShoulders')}/>
         </IonCol>
         </IonRow>
         </IonGrid>

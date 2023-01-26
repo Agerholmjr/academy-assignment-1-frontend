@@ -103,41 +103,40 @@ const authUser = useAuthUserStore((state) => state.authUser);
           <div className="w-full text-center mx-auto h-15  w-6/12 my-3 flex flex-center flex-col">
                     <form onSubmit={(e) => handleSumbit(e)}>
                    
-                      <IonLabel className="block mb-2">{t('profileForm.yourUsername')}</IonLabel>
+                      <IonLabel className="block mb-2 text-[#fef3c7]">{t('profileForm.yourUsername')}</IonLabel>
                       <IonInput type="text" name="username" id="username" className="border-2 bg-white border-black border-grey-text my-2 " placeholder="funnybunny" required onIonInput={(e:any) => setUsername(e.target.value)} ></IonInput>
-                
-                      <h1>HERE</h1>
-                            <div className='mx-auto min-[536px]:flex-row flex-col flex-wrap items-stretch my-4 w-full flex justify-items-start mt-5'>
+            
+                            <div className=' mx-auto min-[536px]:flex-row flex-col flex-wrap items-stretch my-4 w-full flex justify-items-start mt-5'>
                                 
                                 <div className='min-w-[100px]'>
                             <IonCheckbox id="inline-checkbox" value="" className="custom" onIonChange={(e:any) => setGenderM(e.target.checked)} ></IonCheckbox>
-                            <IonLabel  className="align-middle ">M </IonLabel>
+                            <IonLabel  className="align-middle text-[#fef3c7] ">{t('profileForm.genderM')}</IonLabel>
                             </div>
 
                             <div className='min-w-[px]'>
                             <IonCheckbox id="inline-2-checkbox" value="" className="custom" onIonChange={(e:any) => setGenderF(e.target.checked)}  ></IonCheckbox>
-                            <IonLabel className="align-middle ">F</IonLabel>
+                            <IonLabel className="align-middle text-[#fef3c7]">{t('profileForm.genderF')}</IonLabel>
                             </div>
 
                             <div className='min-w-[100px]'>
                             <IonCheckbox  id="inline-3-checkbox" value="" className="custom " onIonChange={(e:any) => setGenderO(e.target.checked)}></IonCheckbox>
-                            <IonLabel className="align-middle ">O</IonLabel>
+                            <IonLabel className="align-middle text-[#fef3c7]">{t('profileForm.genderO')}</IonLabel>
                             </div>
                             </div>
                      
-                      <IonLabel className="">{t('profileForm.yourAge')}</IonLabel>
+                      <IonLabel className="text-[#fef3c7]">{t('profileForm.yourAge')}</IonLabel>
                       <IonInput type="number" name="age" id="age" placeholder="20" className="border-2  bg-white border-black border-grey-text my-2" required onIonInput={(e:any) => setAge(e.target.value)}></IonInput>
                   
-                      <IonLabel className="">{t('profileForm.yourHeight')}</IonLabel>
+                      <IonLabel className="text-[#fef3c7]">{t('profileForm.yourHeight')}</IonLabel>
                       <IonInput type="number" name="height" id="confirm-height" placeholder="170" className="border-2  bg-white border-black border-grey-text my-2" required onIonInput={(e:any) => setHeight(e.target.value)}></IonInput>
                     
-                      <label htmlFor="weight" className="">{t('profileForm.yourWeight')}</label>
+                      <label htmlFor="weight" className="text-[#fef3c7]">{t('profileForm.yourWeight')}</label>
                       <IonInput type="number" name="weight" id="weight" placeholder="70" className="border-2 border-black  bg-white border-grey-text mt-2" required onIonInput={(e:any) => setWeight(e.target.value)}></IonInput>
                     
                   
 
                     <div className="text-center my-1">
-                    <button type="submit" className="border-2 border-black border-grey-text mt-2 outline-double  bg-white">{t('profileForm.createProfile')}</button>
+                    <button type="submit" className=" bg-black text-[#fef3c7] border-2 border-black border-grey-text mt-4 outline-double rounded-lg p-1   bg-white">{t('profileForm.createProfile')}</button>
                     </div>
                     </form>
                 </div>
