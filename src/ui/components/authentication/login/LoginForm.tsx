@@ -17,8 +17,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
   const [password, setPassword] = useState<string>('');
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
   const [isPasswordRevealed, setIsPasswordRevealed] = useState<boolean>(false);
-
+  
   const router = useIonRouter();
+	const authUser = useAuthUserStore((state) => state.authUser);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
+
+  
   const [present, dismiss] = useIonLoading();
   const [presentAlert] = useIonAlert();
 
@@ -27,6 +32,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
   useEffect(() => {
     setIsSubmitDisabled(!(email.includes('@') && password !== ''));
   }, [email, password]);
+
 
   const togglePassword = () => setIsPasswordRevealed(!isPasswordRevealed);
 
@@ -38,7 +44,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
     if (data.user && data.user.aud === 'authenticated') {
       setAuthUser(data.user);
       await dismiss();
-      router.push('/home');
+        router.push('/home');
     } else {
       await dismiss();
       await presentAlert({
@@ -48,6 +54,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
       });
     }
   };
+
 
   const signInWithThirdParty = async (variant: Provider) => {
     await present({ message: t('authentication.redirecting') });
@@ -67,6 +74,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
     if (togglePasswordButtonType === 'icon') {
       return <IonIcon icon={isPasswordRevealed ? eyeOutline : eyeOffOutline} size="medium" onClick={togglePassword} className="text-primary-brand" />;
     }
+
+
+
     return (
       <div className="mr-1 text-sm font-bold cursor-pointer text-primary-brand" onClick={togglePassword}>
         {isPasswordRevealed ? <IonText>{t('authentication.hide')}</IonText> : <IonText>{t('authentication.show')}</IonText>}
@@ -77,13 +87,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
   return (
     <div className="flex h-full justify-center items-center w-full">
       <form className="sm:w-[400px] w-3/4" onSubmit={handleLogin}>
-        <IonText className="text-primary-brand text-xl font-extrabold">{t('authentication.login')}</IonText>
-        <IonItem lines="none" color={'white-background'} class="border border-grey-text mt-8">
+        <IonText className="text-white text-xl font-extrabold">{t('authentication.login')}</IonText>
+        <IonItem lines="none" color={'white-background'} class="border-2 border-black border-grey-text mt-8">
           <IonInput value={email} placeholder={t('authentication.email')} onIonChange={(e) => setEmail(e.detail.value ?? '')} type="email" required class="h-[59px] items-center" />
           <IonIcon icon={at} size="medium" className="text-primary-brand" />
         </IonItem>
 
-        <IonItem lines="none" color={'white-background'} class="border border-grey-text mt-5">
+        <IonItem lines="none" color={'white-background'} class="border-2 border-black border-grey-text mt-5">
           <IonInput
             value={password}
             placeholder={t('authentication.password')}
@@ -106,13 +116,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ togglePasswordButtonType = 'icon'
         </div>
 
         <div className="w-full flex justify-end my-3">
-          <IonText onClick={handleForgottenPassword} className="text-primary-brand hover:cursor-pointer">
+          <IonText onClick={handleForgottenPassword} className="text-white hover:cursor-pointer">
             {t('authentication.forgotPassword')}
           </IonText>
         </div>
-
+       
         <Separator text={t('authentication.or')} />
-
+        
         <div className="flex justify-between gap-2">
           <SocialLoginButton provider="facebook" onClick={() => signInWithThirdParty('facebook')} />
           <SocialLoginButton provider="google" onClick={() => signInWithThirdParty('google')} />

@@ -1,12 +1,16 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonButton, IonContent, IonImg, IonPage, useIonRouter } from '@ionic/react';
+import img from 'static/assets/img/back.png';
 import ResetPasswordForm from 'ui/components/authentication/reset-password/ResetPasswordForm';
 
 const ResetPasswordPage: React.FC = () => {
   return (
     <IonPage>
-      <IonContent fullscreen color={'white-background'} class="h-full w-full flex justify-center items-center">
-        <ResetPasswordForm />
+      <IonContent fullscreen className="fixed h-full w-full">
+      <div className=' mx-auto h-15  w-auto mt-[30px] flex flex-center flex-col'>
+      <IonImg className='mb-12 max-w-xl mx-auto' src={img}/>
+         <ResetPasswordForm />
+        </div>
       </IonContent>
     </IonPage>
   );

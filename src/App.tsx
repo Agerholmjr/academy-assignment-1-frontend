@@ -37,14 +37,14 @@ import './_i18n/config';
 /** Pages imports */
 import LandingPage from './ui/pages/LandingPage';
 import { UILibRouter } from './ui/pages/ui-library/UILibRouter';
-import IntroPage from './ui/pages/IntroPage';
 import LoginPage from './ui/pages/LoginPage';
 import RegisterPage from 'ui/pages/RegisterPage';
 import ForgotPasswordPage from 'ui/pages/ForgotPasswordPage';
 import ResetPasswordPage from 'ui/pages/ResetPasswordPage';
 import HomePage from 'ui/pages/HomePage';
 import { AntdThemeWrapper } from './ui/theme/AntdThemeWrapper';
-import testPage from 'ui/pages/testPage';
+import profilePage from 'ui/pages/profilePage';
+import Details from 'ui/pages/tabs/details/Details';
 
 setupIonicReact({ mode: 'ios' });
 
@@ -71,15 +71,14 @@ const App: React.FC = () => {
       <AntdThemeWrapper>
         <IonReactRouter>
           <Switch>
-          <Route exact path="/testPage" component={testPage} />
-            <Route exact path="/home" component={HomePage} />
+            <Route exact path="/tab2/:category/details" component={Details}></Route>
+            <Route exact path="/profilePage" component={profilePage} />
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/welcome" component={LandingPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
             <Route exact path="/resetpassword" component={ResetPasswordPage} />
             <Route exact path="/register" component={RegisterPage} />
-            <Route exact path="/intro" component={IntroPage} />
             <Route path="/ui-library" component={UILibRouter} />
             <Route path="/*">
               <Redirect to={session ? '/home' : '/welcome'} />

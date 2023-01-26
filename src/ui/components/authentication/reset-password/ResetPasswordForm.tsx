@@ -90,14 +90,14 @@ const ResetPasswordForm: React.FC<ResetPasswordProps> = ({ togglePasswordButtonT
   };
 
   return (
-    <div className="flex h-full justify-center items-center w-full">
+    <div className="flex h-full justify-center items-center w-full bg-[#a91740]">
       <form className="sm:w-[400px] w-3/4 relative" onSubmit={handleResetPassword}>
         <div className="flex items-center">
           <IonIcon onClick={() => history.goBack()} icon={chevronBackCircle} size={'large'} color={'primary-brand'} className="pr-2 cursor-pointer" />
-          <IonText className="text-primary-brand text-xl font-extrabold">{t('authentication.resetPassword')}</IonText>
+          <IonText className="text-white text-xl font-extrabold">{t('authentication.resetPassword')}</IonText>
         </div>
 
-        <IonItem lines="none" color={'white-background'} className={`border ${passwordValid ? 'border-grey-text' : 'border-red-300'} mt-8`}>
+        <IonItem lines="none" color={'white-background'}className={`border-2 border-black ${passwordValid ? 'border-grey-text' : 'border-yellow-500 border-4'} mt-8`}>
           <IonInput
             value={password}
             placeholder={t('authentication.password')}
@@ -114,7 +114,7 @@ const ResetPasswordForm: React.FC<ResetPasswordProps> = ({ togglePasswordButtonT
 
         <IonText className={`text-red-500 ${passwordValid && 'opacity-0'}`}>{t('authentication.passwordMinLength')}</IonText>
 
-        <IonItem lines="none" color={'white-background'} className={`border ${repPasswordValid ? 'border-grey-text' : 'border-red-300'}`}>
+        <IonItem lines="none" color={'white-background'} className={`border-2 border-black ${repPasswordValid ? 'border-grey-text' : 'border-yellow-500 border-4'}`}>
           <IonInput
             value={repeatedPassword}
             placeholder={t('authentication.repeatPassword')}
@@ -129,9 +129,9 @@ const ResetPasswordForm: React.FC<ResetPasswordProps> = ({ togglePasswordButtonT
           )}
         </IonItem>
 
-        <IonText className={`text-red-500 ${repPasswordValid && 'opacity-0'}`}>{t('authentication.passwordMustMatch')}</IonText>
+        <IonText className={`text-yellow-500 ${repPasswordValid && 'opacity-0'}`}>{t('authentication.passwordMustMatch')}</IonText>
 
-        <IonButton expand="full" className="w-full mb-2" onClick={handleResetPassword} disabled={isDisabled}>
+        <IonButton expand="full" className="w-full mb-2 " onClick={handleResetPassword} disabled={isDisabled}>
           {t('authentication.resetPassword')}
         </IonButton>
         <button className="hidden" type="submit" />

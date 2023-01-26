@@ -10,45 +10,85 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonMenu,
   IonMenuButton,
   IonPage,
-  IonTitle,
   IonToolbar,
-  IonItem,
   IonButton,
   useIonRouter,
 } from '@ionic/react';
-import { peopleOutline, ticketOutline, walletOutline, cameraOutline } from 'ionicons/icons';
+import { personCircleOutline, analyticsOutline, cameraOutline, barbellOutline } from 'ionicons/icons';
+import 'static/css/custom_ion.css';
+import { useProfileState } from 'ui/components/profile/profileState';
 
 import Tab1 from './tabs/tab-1/Tab1';
 import Tab2 from './tabs/tab-2/Tab2';
 import Tab3 from './tabs/tab-3/Tab3';
 import Tab4 from './tabs/tab-4/Tab4';
 import { supabase } from 'apis/supabaseClient';
+
 import { useAuthUserStore } from 'store/user';
+import { t } from 'i18next';
 
 const HomePage: React.FC = () => {
+  const profile = useProfileState((state) => state.profile);
+  const setProfile = useProfileState((state) => state.setProfile);
+  const resetProfile = useProfileState((state) => state.resetProfile);
+
   const router = useIonRouter();
   const authUser = useAuthUserStore((state) => state.authUser);
   const resetAuthUser = useAuthUserStore((state) => state.resetAuthUser);
 
   useEffect(() => {
+
+  
+    
     if (!authUser) router.push('/login');
+    if(authUser){
+    checkIfProfileExsists(authUser?.id);
+    }
+   
   }, [router, authUser]);
+
+  
 
   const handleLogOut = async () => {
     resetAuthUser();
+    resetProfile();
     await supabase.auth.signOut();
     router.push('/login');
   };
+
+  const checkIfProfileExsists = async (id: string | undefined) => {
+   
+    const { data, error } = await supabase
+    .from('fitnessprofile')
+    .select()
+    .match({ 'id':id })
+    .single(); 
+    
+    if(data){
+      setProfile(true);
+      router.push('/home');
+    }
+
+    if(error){
+      setProfile(false);
+     router.push('/profilePage');
+    }
+
+
+  };
+      
+    
+  
+
 
   return (
     <IonPage id="main-content">
       <IonHeader>
         <IonToolbar>
           <IonButton onClick={handleLogOut} slot="end">
-            Log ud
+            {t('authentication.logout')}
           </IonButton>
           <IonButtons slot="start">
             <IonMenuButton />
@@ -68,7 +108,7 @@ const HomePage: React.FC = () => {
               </Route>
             </IonRouterOutlet>
 
-            <IonTabBar slot="bottom" color={'white-background'} class={'h-[70px] border-t-[1px] border'}>
+            <IonTabBar slot="bottom" class={'h-[70px] border-t-[1px] border'}>
               {pages.map((p, i) => {
                 return (
                   <IonTabButton key={i} tab={`tab${i}`} href={p.path}>
@@ -86,6 +126,7 @@ const HomePage: React.FC = () => {
 
 export default HomePage;
 
+
 const pages = [
   {
     name: 'photo',
@@ -95,22 +136,22 @@ const pages = [
     redirect: true,
   },
   {
-    name: 'people',
-    icon: peopleOutline,
+    name: 'training',
+    icon: barbellOutline,
     path: '/tab2',
     component: Tab2,
     redirect: false,
   },
   {
-    name: 'ticket',
-    icon: ticketOutline,
+    name: 'stats',
+    icon: analyticsOutline,
     path: '/tab3',
     component: Tab3,
     redirect: false,
   },
   {
-    name: 'wallet',
-    icon: walletOutline,
+    name: 'profil',
+    icon: personCircleOutline,
     path: '/tab4',
     component: Tab4,
     redirect: false,
@@ -118,3 +159,5 @@ const pages = [
 ];
 
 const menuItems = [{ name: 'Settings' }, { name: 'Account' }, { name: 'Questionnaire' }, { name: 'Logout' }];
+
+

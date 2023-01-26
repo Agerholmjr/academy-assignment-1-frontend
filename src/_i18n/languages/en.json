@@ -3,11 +3,12 @@
     "title": "Welcome to MeeWs frontend template",
     "signIn": "Sign in",
     "welcomeT": "Welcome to The Fitness Power",
-    "motMsg":"Bring the power, bring the YOU",
+    "motivationMsg":"Bring the power, bring the YOU",
     "welcomeMsg":"Your app for updated fitness exercises to get your dream physic!",
     "goButton": "Let's work"
   },
   "authentication": {
+    "logout": "Log out",
     "login": "Login",
     "signUp": "Sign up",
     "signOut": "Sign out",
@@ -37,5 +38,55 @@
     "resetLinkSent": "Reset link sent",
     "ifAccountExists": "If an account exists, a password reset link has been sent.",
     "sendResetLink": "Send reset link"
+  },
+
+  "tab2":{
+    "chooseExercise":"Choose your exercise",
+    "catChest":"Chest ",
+    "catBack":"Back",
+    "catLegs":"Legs",
+    "catShoulders":"Shoulders"
+  },
+  
+  "profileForm":{
+    "yourProfile": "Your profile",
+    "yourEmail": "your email",
+    "yourPassword": "your password",
+    "confPassword": "confirm password",
+    "yourGender": "Your gender",
+    "yourAge": "Your age",
+    "yourHeight": "Your height in CM",
+    "yourWeight": "Your weight in KG",
+    "saveChanges": "save changes",
+    "yourUsername": "Your username",
+    "createProfile": "Create your profile",
+    "gender":"Gender",
+    "login": "Login here",
+    "genderM": "Male",
+    "genderF": "Female",
+    "genderO": "Other"
+  },
+
+  "editProfileForm":{
+    "profile": "Profile",
+    "email": "Email",
+    "password": "Password",
+    "age": "Age",
+    "height": "Height",
+    "weight": "Weight",
+    "saveChanges": "Save changes",
+    "username": "Username",
+    "gender":"Gender"
+  },
+
+  "stopWatch":{
+    "stopWatch": "Stopwatch"
+  },
+
+  "photo":{
+    "takePhoto": "Take your progress picture"
   }
+
+  
+
 }
